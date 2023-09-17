@@ -2,6 +2,14 @@ import "../../styles/globals.css";
 import { Inter } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
+import Navbar from "./Navbar.jsx";
+// import Font Awesome CSS
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import Footer from "./Footer";
+// Tell Font Awesome to skip adding the CSS automatically
+// since it's already imported above
+config.autoAddCss = false;
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +33,9 @@ export default async function RootLayout({ children, params: { locale } }) {
     <html lang={locale} dir={locale == "ar" ? "rtl" : "ltr"}>
       <body className={inter.className}>
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <Navbar />
           {children}
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>
